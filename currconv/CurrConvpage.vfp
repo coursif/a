@@ -1,0 +1,20 @@
+<apex:page controller="CurrConv">
+    <apex:form>
+        <apex:pageBlock title="Currency Converter">
+            <apex:pageBlockSection>
+                <apex:selectList value="{!opt1}" label="Convert From">
+                    <apex:selectOptions value="{!options}" />
+                </apex:selectList>
+                <apex:selectList value="{!opt2}" label="Convert To">
+                    <apex:selectOptions value="{!options}" />
+                </apex:selectList>
+                <apex:inputText value="{!amt}" label="Amount" />
+                <apex:commandButton value="Convert" action="{!performCurrencyConversion}" rerender="resultPanel" />
+            </apex:pageBlockSection>
+            <apex:outputPanel id="resultPanel">
+                <apex:outputText value="Converted Amount: {!result}" rendered="{!result != null}" />
+                <apex:outputText value="Invalid currency conversion." rendered="{!result == null}" />
+            </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

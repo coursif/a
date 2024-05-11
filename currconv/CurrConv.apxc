@@ -1,0 +1,66 @@
+public class CurrConv {
+    public Decimal result { get; private set; }
+    public Integer opt1 { get; set; }
+    public Integer opt2 { get; set; }
+    public Decimal amt { get; set; }
+
+    // Define the constructor to initialize the controller
+    public CurrConv() {
+        // Constructor logic if needed
+    }
+
+    // Conversion methods
+    public Decimal inr_euro(Decimal amt) {
+        return amt * 0.011426;
+    }
+
+    public Decimal euro_inr(Decimal amt) {
+        return amt / 0.011426;
+    }
+
+    public Decimal inr_usd(Decimal amt) {
+        return amt * 0.0119;
+    }
+
+    public Decimal usd_inr(Decimal amt) {
+        return amt / 0.0119;
+    }
+
+    public Decimal inr_aus(Decimal amt) {
+        return amt * 1.1114;
+    }
+
+    public Decimal aus_inr(Decimal amt) {
+        return amt / 1.1114;
+    }
+
+    // Method to perform currency conversion based on selected options
+    public void performCurrencyConversion() {
+        if (opt1 == 1 && opt2 == 2) {
+            result = inr_euro(amt);
+        } else if (opt1 == 2 && opt2 == 1) {
+            result = euro_inr(amt);
+        } else if (opt1 == 1 && opt2 == 3) {
+            result = inr_usd(amt);
+        } else if (opt1 == 3 && opt2 == 1) {
+            result = usd_inr(amt);
+        } else if (opt1 == 1 && opt2 == 4) {
+            result = inr_aus(amt);
+        } else if (opt1 == 4 && opt2 == 1) {
+            result = aus_inr(amt);
+        } else {
+            System.debug('Invalid currency conversion.');
+            result = 0; // Set result to 0 if conversion fails
+        }
+    }
+
+    // Getter method to provide select options for the conversion dropdowns
+    public List<SelectOption> getOptions() {
+        List<SelectOption> options = new List<SelectOption>();
+        options.add(new SelectOption('1', 'INR'));
+        options.add(new SelectOption('2', 'EUR'));
+        options.add(new SelectOption('3', 'USD'));
+        options.add(new SelectOption('4', 'AUD'));
+        return options;
+    }
+}
